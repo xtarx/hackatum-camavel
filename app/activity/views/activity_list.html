@@ -18,10 +18,11 @@
                 <ul id="cat_nav">
                     <li ng-click="vm.filters.type_id = ''"><a href="" ng-attr-id="{{vm.selectedType==0 ? 'active': ''}}"><i class="icon_set_1_icon-51"></i>All tours <span>({{vm.activities.length}})</span></a></li>
 
-                    <li ng-repeat="type in vm.activity_types" ng-click="vm.filters.type = type.id;vm.selectedType=type.id"><a  href="" ng-attr-id="{{type.id==vm.selectedType ? 'active': ''}}" ><i  class="{{type.icon
+                    <li ng-repeat="type in vm.activity_types" ng-click="vm.filters.type_id = type.id;vm.selectedType=type.id"><a  href="" ng-attr-id="{{type.id==vm.selectedType ? 'active': ''}}" ><i  class="{{type.icon
                     }}"></i>{{type.name}}<span>({{(vm.activities | filter:{type_id:type.id}).length}})</span></a></li>
                 </ul>
             </div>
+            
         </aside><!--End aside -->
 
         <div class="col-lg-9 col-md-9">
