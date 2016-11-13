@@ -2,9 +2,9 @@
 
 Platform for all outdoors
 
-![Screenshot](http://i.imgur.com/ZPUk3bD)
-![Screenshot](http://i.imgur.com/xPLBQ3O)
-![Screenshot](http://i.imgur.com/ES7ACdu)
+![Screenshot](https://i.imgur.com/ZPUk3bD.jpg)
+![Screenshot](http://i.imgur.com/xPLBQ3O.jpg)
+![Screenshot](http://i.imgur.com/ES7ACdu.jpg)
 
 ## Demo
 http://cama.womdev.co/
