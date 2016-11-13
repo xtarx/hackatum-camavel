@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+.drop-box {
+	border: 2px dashed #e6e7eb;
+    border-radius: 6px;
+    height: 100px;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 25px;
+}

@@ -1,0 +1,110 @@
+    <!-- SPECIFIC CSS -->
+    <link href="assets/css/admin.css" rel="stylesheet">
+    <link href="assets/css/jquery.switch.css" rel="stylesheet">
+
+ <!-- Specific scripts -->
+<script src="assets/js/tabs.js"></script>
+<script>new CBPFWTabs( document.getElementById( 'tabs' ) );</script>
+
+<section style="background: url(assets/img/slide_hero.jpg) no-repeat center center fixed;">
+    <div class="parallax-content-1">
+        <div class="animated fadeInDown">
+        <h1>Bookings</h1>
+        <p>Manage your bookins and organizations</p>
+        </div>
+    </div>
+</section><!-- End section -->
+
+
+<div class="margin_60 container">
+	<div id="tabs" class="tabs">
+		<nav>
+		<ul>
+			<li style="width:50%"><a href="#section-1" class="icon-booking"><span>Bookings</span></a></li>
+			<li style="width:50%"><a href="#section-2" class="icon-booking"><span>Requests</span></a></li>
+		</ul>
+		</nav>
+		<div class="content">
+
+        
+			<!-- <h4 class="text-center" ng-show="vm.activites_requests==null">unfortunately you have not booked an activity yet</h4> -->
+
+
+			<section id="section-1" ng-show="vm.activites_requests.length>1">            
+			<div class="strip_booking" ng-repeat="activity in vm.activites_requests">
+				<div class="row">
+					<div class="col-md-2 col-sm-2">
+						<div class="date">
+							<span class="month">{{activity.date_full.month}}</span>
+							<span class="day"><strong>{{activity.date_full.day_digit}}</strong>{{activity.date_full.day_name}}</span>
+						</div>
+					</div>
+					<a ng-href="#/list/{{activity.id}}">
+					<div class="col-md-6 col-sm-5" >
+						<h3 class="hotel_booking">{{activity.title}}<span>{{activity.type}} </span></h3>
+					</div>
+					</a>
+					<div class="col-md-2 col-sm-3">
+						<ul class="info_booking">
+							<li><strong>Booking id</strong> {{activity.request.refrence}}</li>
+							<li><strong>Booked on</strong> {{activity.date_full.booking}}</li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="booking_buttons">
+
+							<a href="#/payment/{{activity.request.refrence}}" class="btn_2 green" ng-show={{activity.request.status=='accept'}}>Pay</a>
+							<a href="#0" class="btn_3 dark" ng-show={{activity.request.status=='accept'}}>Confirmed</a>
+							<a href="#0" class="btn_3" ng-show={{activity.request.status!='accept'}}>Pending</a>
+						</div>
+					</div>
+				</div><!-- End row -->
+			</div><!-- End strip booking -->
+            
+			
+            
+			</section><!-- End section 2 -->
+            
+            <section id="section-2" ng-show="vm.activity_received_requests.length>1">
+			
+			
+            
+			<div class="strip_booking" ng-repeat="activity in vm.activity_received_requests">
+				<div class="row">
+					<div class="col-md-2 col-sm-2">
+						<div class="date">
+							<span class="month">{{activity.date_full.month}}</span>
+							<span class="day"><strong>{{activity.date_full.day_digit}}</strong>{{activity.date_full.day_name}}</span>
+						</div>
+					</div>
+					<a ng-href="#/list/{{activity.id}}">
+					<div class="col-md-6 col-sm-5" >
+						<h3 class="hotel_booking">{{activity.title}}<span>{{activity.type}} </span></h3>
+					</div>
+					</a>
+					<div class="col-md-2 col-sm-3">
+						<ul class="info_booking">
+							<li><strong>Booking id</strong> {{activity.request.refrence}}</li>
+							<li><strong>Booked on</strong> {{activity.date_full.booking}}</li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="booking_buttons">
+
+							<a href="#/payment/{{activity.request.refrence}}" class="btn_2" ng-show={{activity.request.status=='accept'}}>Pay</a>
+							<a href="#0" class="btn_3" ng-click="vm.acceptRequest(activity.request.id)" >Accept</a>
+							
+							<a href="#0" class="btn_3" ng-click="vm.rejectRequest(activity.request.id)" >Reject</a>
+						</div>
+					</div>
+				</div><!-- End row -->
+			</div><!-- End strip booking -->
+            
+			
+            
+			</section><!-- End section 2 -->
+            
+            
+		</div><!-- End content -->
+	</div><!-- End tabs -->
+</div><!-- end container -->

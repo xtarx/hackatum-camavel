@@ -1,0 +1,205 @@
+<!-- SPECIFIC CSS -->
+<link href="assets/css/admin.css" rel="stylesheet">
+
+ <!-- Specific scripts -->
+<script src="assets/js/tabs.js"></script>
+<script>new CBPFWTabs( document.getElementById( 'tabs' ) );</script>
+
+ <!-- SPECIFIC CSS -->
+    <link href="assets/css/date_time_picker.css" rel="stylesheet">
+
+ <!-- Specific scripts -->
+<script src="assets/js/icheck.js"></script>
+ <script src="assets/js/bootstrap-datepicker.js"></script>
+ <script src="assets/js/bootstrap-timepicker.js"></script>
+ <script>
+  $('input.date-pick').datepicker('setDate', 'today');
+  $('input.time-pick').timepicker({
+    minuteStep: 15,
+    showInpunts: false
+})
+  </script>
+  <script src="assets/js/jquery.ddslick.js"></script>
+   <script>
+   $("select.ddslick").each(function(){
+            $(this).ddslick({
+                showSelectedHTML: true 
+            });
+        });
+
+       /* Input required incrementer*/
+    $(".numbers-row").append('<div class="inc button_inc">+</div><div class="dec button_inc">-</div>');
+    $(".button_inc").on("click", function () {
+
+        var $button = $(this);
+        var oldValue = $button.parent().find("input").val();
+
+        if ($button.text() == "+") {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 1) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find("input").val(newVal);
+    });
+        </script>
+
+
+<section style="background: url(assets/img/slide_hero.jpg) no-repeat center center fixed;">
+    <div class="parallax-content-1">
+        <div class="animated fadeInDown">
+            <h1>Create an Adventure</h1>
+            <p>Follow these simple steps to create your adventure</p>
+        </div>
+    </div>
+</section><!-- End section -->
+
+<div class="margin_60 container">
+    <div id="tabs" class="tabs">
+        <nav>
+        <ul>
+            <li ng-class="vm.current_step==1  ? 'tab-current' : '' "><a href="#section-1"><span>Step 1</span></a></li>
+            <li ng-class="vm.current_step==2  ? 'tab-current' : '' "><a href="#section-2"><span>Step 2</span></a></li>
+            <li ng-class="vm.current_step==3  ? 'tab-current' : '' "><a href="#section-3"><span>Step 3</span></a></li>
+        </ul>
+        </nav>
+        <div class="content" ng-init="vm.create()">
+        
+        
+            <section id="section-1"  data-toggle="validator" ng-class="vm.current_step==1  ? 'content-current' : '' ">
+               <h3>Fill starters</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Give it a name</label>
+                                        <input required type="text" class="form-control" id="firstname_booking" name="firstname_booking" placeholder="A cool camel ride in the Alps" ng-model="vm.activity_title">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>What Type?</label>
+
+                                        <div>
+                                            <select class="selection" ng-model="vm.activity_type">
+                                              <option ng-repeat="type in vm.activity_types" value="{{type.id}}">{{type.name}}</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div><!-- End row -->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label><i class="icon-calendar-7"></i>From</label>
+                                        <input required class="date-pick form-control" data-date-format="M d, D" type="text" ng-model="vm.activity_start_date">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label><i class="icon-calendar-7"></i>Until</label>
+                                        <input class="date-pick form-control" data-date-format="M d, D" type="text" ng-model="vm.activity_end_date">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Destination</label>
+                                      <input required type="text" class="form-control" id="firstname_booking" name="firstname_booking" placeholder="Land of wonders" ng-model="vm.destination" vs-google-autocomplete >
+
+                                    </div>
+                                </div>
+                           
+                                
+                            </div><!-- End row -->
+                        
+            
+            <hr>
+                        <button type="submit" class="btn_1 green pull-right" ng-click="vm.nextStep()">Next</button>
+
+            </section><!-- End section 1 -->
+            
+            
+        
+            <section id="section-2" ng-class="vm.current_step==2  ? 'content-current' : '' ">
+             <h3>More details</h3>
+                            <div class="row">
+                        
+                                <div class="col-md-12">
+                                <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control"  name="descr_booking" placeholder="A cool camel ride in the Alps" rows="5" ng-model="vm.description" ></textarea> 
+                                    </div>
+                                </div>
+                            </div><!-- End row -->
+                            <div class="row">
+                                
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Drop File</label>
+                                   <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+        ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+        accept="image/*" 
+        ngf-pattern="'image/*'">Drop images here or click to upload</div>
+
+
+        <!-- upload log -->
+            <label>Files:</label>
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+    </ul>
+    <label>Upload Log:</label>
+    <pre>{{log}}</pre>
+        <!-- upload log -->
+        
+                                    </div>
+                                </div>
+                              
+                                <div class="col-md-8 col-sm-9">
+                                    <div class="form-group">
+                                 <label>Checklist</label>
+                                        <textarea class="form-control" name="descr_booking" placeholder="Write to dos seperated with enter" rows="5" ng-model="vm.check_list" ></textarea> 
+                                    </div>
+                                </div>
+                            </div><!-- End row -->
+            <hr>
+            <button type="submit" class="btn_1 green pull-right" ng-click="vm.nextStep()">Next</button>
+            </section><!-- End section 2 -->
+            
+            
+        
+            <section id="section-3" ng-class="vm.current_step==3  ? 'content-current' : '' ">
+                                <h3>How about some Math?</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>How many people</label>
+                                        <input required type="number" string-to-number  class="form-control" id="firstname_booking" name="firstname_booking" placeholder="10" ng-model="vm.vacancies">
+                                    </div>
+
+
+                              
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="form-group">
+                                        <label>Minimum contribution per person</label>
+                                        <input required type="number" string-to-number class="form-control" id="firstname_booking" name="firstname_booking" placeholder="5" ng-model="vm.price">
+                                    </div>
+
+                                 
+                                </div>
+                            </div><!-- End row -->
+            
+            <hr>
+                                    <button type="submit" class="btn_1 green pull-right" ng-click="vm.nextStep()">Finish</button>
+
+            </section><!-- End section 3 -->
+            
+            
+            
+        </div><!-- End content -->
+    </div><!-- End tabs -->
+</div><!-- end container -->

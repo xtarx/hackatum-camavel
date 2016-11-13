@@ -1,0 +1,104 @@
+<section style="background: url(assets/img/slide_hero.jpg) no-repeat center center fixed;">
+    <div class="parallax-content-1">
+        <div class="animated fadeInDown">
+        <h1>Munich</h1>
+        <p>The center of Bavaria. The center of beer</p>
+        </div>
+    </div>
+</section><!-- End section -->
+    
+<div class="collapse" id="collapseMap">
+    <div id="map" class="map"></div>
+</div><!-- End Map -->
+
+<div  class="container margin_60">
+    <div class="row">
+        <aside class="col-lg-3 col-md-3">
+            <div class="box_style_cat">
+                <ul id="cat_nav">
+                    <li ng-click="vm.filters.type_id = ''"><a href="" ng-attr-id="{{vm.selectedType==0 ? 'active': ''}}"><i class="icon_set_1_icon-51"></i>All tours <span>({{vm.activities.length}})</span></a></li>
+
+                    <li ng-repeat="type in vm.activity_types" ng-click="vm.filters.type = type.id;vm.selectedType=type.id"><a  href="" ng-attr-id="{{type.id==vm.selectedType ? 'active': ''}}" ><i  class="{{type.icon
+                    }}"></i>{{type.name}}<span>({{(vm.activities | filter:{type_id:type.id}).length}})</span></a></li>
+                </ul>
+            </div>
+        </aside><!--End aside -->
+
+        <div class="col-lg-9 col-md-9">
+            <!-- Activity Start -->
+            <div class="strip_all_tour_list" ng-repeat="activity in vm.activities| filter:vm.searchTerm | filter:vm.filters" ng-href="#/list/{{activity.id}}">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="img_list">
+                            <a ng-href="#/list/{{activity.id}}">
+                                <img src="assets/img/tour_box_1.jpg" alt="Image">
+                                <div class="short_info"><i class="icon_set_1_icon-4"></i>{{activity.type}}</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clearfix visible-xs-block"></div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="tour_list_desc">
+                            <h3>{{activity.title}}</h3>
+                            <p>{{ activity.description | limitTo: 170 }}{{activity.description.length > 170 ? '...' : ''}}</p>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img class="creator_pic" src="{{activity.user.profile_picture_url}}" alt="creator">    
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="creator_name">{{activity.user.name}}</h5>
+                                    <div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small></div>
+                                </div>
+                                <ul class="col-md-5 add_info text-right">
+                                    <li>
+                                        <div class="tooltip_styled tooltip-effect-4">
+                                            <span class="tooltip-item"><i class="icon_set_1_icon-83"></i></span>
+                                            <div class="tooltip-content">
+                                                <h4>Schedule</h4>
+                                                start: {{activity.start_date}}<br>
+                                                end: {{activity.end_date}}<br>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="tooltip_styled tooltip-effect-4">
+                                            <span class="tooltip-item"><i class="icon_set_1_icon-41"></i></span>
+                                            <div class="tooltip-content">
+                                                <h4>Address</h4>
+                                                {{activity.meeting_point}}
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </li>
+                                  
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <div class="price_list">
+                            <div>
+                                <p><a ng-href="#/list/{{activity.id}}" class="btn_1">Details</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Activity End -->
+
+            <!-- <div class="text-center">
+                <ul class="pagination">
+                    <li><a href="#">Prev</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div> -->
+              
+        </div><!-- End col lg-9 -->
+    </div><!-- End row -->
+</div><!-- End container -->
+    

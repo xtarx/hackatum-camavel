@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->  
+<html ng-app="camavelApp"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="Camavel - Discover outdoor adventures near you">
+    <meta name="author" content="Camavel">
+    <title>Camavel - Discover</title>
+    
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="assets/img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="assets/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="assets/img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="assets/img/apple-touch-icon-144x144-precomposed.png">
+
+    <!-- CSS -->
+    <link href="assets/css/base.css" rel="stylesheet">
+
+    <!-- Google web fonts -->
+   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+   <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
+   <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i" rel="stylesheet">
+        
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+        
+</head>
+<body>
+
+<!--[if lte IE 8]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
+<![endif]-->
+
+    <div id="preloader">
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div>
+    <!-- End Preload -->
+
+    <div class="layer"></div>
+    <!-- Mobile menu overlay mask -->
+
+    <!-- Header================================================== -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <div id="logo_home">
+                        <h1><a href="#" title="Camavel">Camvel</a></h1>
+                    </div>
+                </div>
+                <nav class="col-md-9 col-sm-9 col-xs-9">
+                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                    <div class="main-menu" ng-controller="LoginController">
+                        <div id="header_menu">
+                            <img src="assets/img/logo_sticky.png" width="160" height="34" alt="Camavel" data-retina="true">
+                        </div>
+                        <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
+                        <ul>
+                            <li>
+                                <a href="#/listall">Discover</a>
+                            </li>
+                            <li ng-show="isLogged">
+                                <a ng-href="#/activity/create">Start an Adventure</a>
+                            </li>
+                           <li ng-show="isLogged">
+                                <a ng-href="#/mybookings/">My bookings</a>
+                            </li>
+                          
+                            <li ng-show="!isLogged" ng-click="loginfb()">
+                                <a href="">Login</a>
+                            </li> 
+                            <li ng-show="isLogged" ng-click="logout()">
+                                <a href="">Logout</a>
+                            </li>
+                        </ul>
+                    </div><!-- End main-menu -->
+                </nav>
+            </div>
+        </div><!-- container -->
+        </header><!-- End Header -->
+
+
+<!--    NEW BODY END-->
+            <div ng-view></div>
+<!--    NEW BODY END-->
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div id="logo_home">
+                        <h1><a href="#" title="Camavel">Camavel</a></h1>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="row text-center">
+                        <h3 class="col-md-3"><a href="#">Home</a></h3>
+                        <h3 class="col-md-3"><a href="#/listall">Discover</a></h3>
+                        <!-- <h3 class="col-md-3"><a href="#">Settings</a></h3> -->
+                        <h3 class="col-md-3"><a href="#">About Us</a></h3>
+                        <h3 class="col-md-3"><a href="#">Contact</a></h3>
+                    </div>
+                </div>
+                <div class="col-md-2 col-md-offset-2">
+                    <div id="social_footer">
+                        <ul>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- End row -->
+            <hr>
+            <div class="row info_footer">
+                <div class="col-md-5">   
+                    <p><i>Camavel is where you discover outdoor activities around you, meet new people and enjoy your time</i></p> 
+                </div>
+                <div class="col-md-7">
+                    <span class="pull-right">© Camavel 2016</span>
+                </div>
+            </div><!-- End row -->
+        </div><!-- End container -->
+    </footer><!-- End footer -->
+
+
+<div id="toTop"></div><!-- Back to top button -->
+
+<!-- Common scripts -->
+<script src="assets/js/jquery-1.11.2.min.js"></script>
+<script src="assets/js/common_scripts_min.js"></script>
+<script src="assets/js/functions.js"></script>
+
+<!-- Specific scripts -->
+<script src="assets/js/vendor/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="http://pc035860.github.io/angular-easyfb/angular-easyfb.min.js"></script>
+<script src="bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
+
+<!-- google places autocomplete -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDqjMRaha7yCjnt8kWYh5ObRxOTjB5wJxs"></script>
+
+<script src="bower_components/vsGoogleAutocomplete/dist/vs-google-autocomplete.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+
+
+
+<script src="app/app.js"></script>
+<script src="app/activity/activity.controller.js"></script>
+<script src="app/booking/booking.controller.js"></script>
+<script src="app/booking/booking_request.controller.js"></script>
+
+<!-- Real user service that uses an api -->
+<script src="app/app-services/user.service.js"></script>
+<script src="app/app-services/activity.service.js"></script>
+<script src="app/app-services/booking.service.js"></script>
+<script src="app/app-services/store.service.local-storage.js"></script>
+<!--AUTHENTICATION SCRIPTS-->
+<script src="app/app-services/authentication.service.js"></script>
+<script src="app/app-services/flash.service.js"></script>
+<script src="app/login/login.controller.js"></script>
+<script src="app/logout/logout.controller.js"></script>
+<!--AUTHENTICATION SCRIPTS-->
+
+
+<!-- Cat nav mobile -->
+<script  src="assets/js/cat_nav_mobile.js"></script>
+<script>$('#cat_nav').mobileMenu();</script>
+<!-- Check and radio inputs -->
+<script src="assets/js/icheck.js"></script>
+<script>  
+$('input').iCheck({
+   checkboxClass: 'icheckbox_square-grey',
+   radioClass: 'iradio_square-grey'
+ });
+ </script>
+ <!-- Map -->
+<!-- <script src="http://maps.googleapis.com/maps/api/js"></script> -->
+<script src="assets/js/map.js"></script>
+<script src="assets/js/infobox.js"></script>
+  </body>
+</html>
