@@ -16,6 +16,8 @@ class activities_model extends MY_Model
         $this->load->model('activities/activity_memebers_model');
         $this->load->model('activities/activity_types_model');
         $this->load->model('activities/activity_todos_model');
+        $this->load->model('activities/activity_images_model');
+
         $this->load->model('account/users_fb_model');
 
         $activity = $this->activities_model->get($id);
@@ -45,6 +47,20 @@ class activities_model extends MY_Model
             $activity['on_board_count'] = $joined_members;
 
             $activity['vacancies'] -= $joined_members;
+            $activity['main_image'] = $this->activity_images_model->get_by(array('activity_id' => $id));
+            if ($activity['main_image']) {
+                $activity['main_image']['file_name'] = base_url("uploads/" . $activity['main_image']['file_name']);
+            } else {
+                $activity['main_image']['file_name'] = "assets/img/tour_box_1.jpg";
+            }
+
+            $activity['promo_image'] = $this->activity_images_model->get_by(array('activity_id' => $id));
+            if ($activity['promo_image']) {
+                $activity['promo_image'] = base_url("uploads/" . $activity['promo_image']['file_name']);
+            } else {
+                $activity['promo_image'] = "assets/img/slide_hero.jpg";
+            }
+
             $activity_creator = $this->users_fb_model->get($activity['creator_id']);
 
             $activity['user'] = array(

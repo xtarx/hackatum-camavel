@@ -16,7 +16,7 @@
         <aside class="col-lg-3 col-md-3">
             <div class="box_style_cat">
                 <ul id="cat_nav">
-                    <li ng-click="vm.filters.type_id = ''"><a href="" ng-attr-id="{{vm.selectedType==0 ? 'active': ''}}"><i class="icon_set_1_icon-51"></i>All tours <span>({{vm.activities.length}})</span></a></li>
+                    <li ng-click="vm.filters.type_id = '';vm.selectedType=0"><a href="" ng-attr-id="{{vm.selectedType==0 ? 'active': ''}}"><i class="icon_set_1_icon-51"></i>All tours <span>({{vm.activities.length}})</span></a></li>
 
                     <li ng-repeat="type in vm.activity_types" ng-click="vm.filters.type_id = type.id;vm.selectedType=type.id"><a  href="" ng-attr-id="{{type.id==vm.selectedType ? 'active': ''}}" ><i  class="{{type.icon
                     }}"></i>{{type.name}}<span>({{(vm.activities | filter:{type_id:type.id}).length}})</span></a></li>
@@ -32,8 +32,8 @@
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <div class="img_list">
                             <a ng-href="#/list/{{activity.id}}">
-                                <img src="assets/img/tour_box_1.jpg" alt="Image">
-                                <div class="short_info"><i class="icon_set_1_icon-4"></i>{{activity.type}}</div>
+                                <img src="{{activity.main_image.file_name}}" alt="Image">
+                                <div class="short_info">{{activity.type}}</div>
                             </a>
                         </div>
                     </div>

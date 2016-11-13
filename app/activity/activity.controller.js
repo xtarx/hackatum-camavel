@@ -92,7 +92,7 @@
 
         function nextStep() {
             // alert(vm.current_step);
-            if (vm.current_step == 3) {
+            if (vm.current_step == 4) {
                 //submit form
                 addActivity({
                     title: vm.activity_title,
@@ -131,8 +131,8 @@
             vm.check_list = "";
             vm.duration = "";
             //step 3
-            vm.vacancies = "10";
-            vm.price = "2";
+            vm.vacancies = 1;
+            vm.price = 2;
         }
 
         function getDetails() {
